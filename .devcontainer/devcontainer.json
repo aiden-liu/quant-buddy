@@ -1,0 +1,27 @@
+{
+    "name": "Claude Code Dev Container",
+    "image": "mcr.microsoft.com/devcontainers/python:3.11",
+    "features": {
+        "ghcr.io/devcontainers/features/git:1": {
+            "ppa": true,
+            "version": "os-provided"
+        },
+        "ghcr.io/devcontainers/features/node:1": {
+            "version": "lts",
+            "nodeGypDependencies": true,
+            "nvmInstallPath": "/usr/local/share/nvm",
+            "nvmVersion": "latest"
+        }
+    },
+    "postCreateCommand": "git config --global core.eol lf && git config --global core.autocrlf input && git config --global user.name 'bot' && git config --global user.email 'bot-claude-code@datamlops.com' && npm install -g @anthropic-ai/claude-code@2.1.104 && export DISABLE_AUTOUPDATER=1 && bash -lc 'if [ -x ./.devcontainer/init-claude-onboarding.sh ]; then ./.devcontainer/init-claude-onboarding.sh; else s=$(find /workspaces -maxdepth 4 -type f -path \"*/.devcontainer/init-claude-onboarding.sh\" | head -n1); if [ -n \"$s\" ]; then \"$s\"; fi; fi'",
+    "postStartCommand": "bash -lc 'if [ -x ./.devcontainer/start-db-proxy-service.sh ]; then ./.devcontainer/start-db-proxy-service.sh; else s=$(find /workspaces -maxdepth 4 -type f -path \"*/.devcontainer/start-db-proxy-service.sh\" | head -n1); if [ -n \"$s\" ]; then \"$s\"; fi; fi'",
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "ms-python.python",
+                "Meezilla.json",
+                "redhat.vscode-yaml"
+            ]
+        }
+    }
+}

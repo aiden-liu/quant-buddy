@@ -1,0 +1,13 @@
+{
+  "terminal.integrated.cwd": "${workspaceFolder}",
+  "terminal.integrated.profiles.linux": {
+    "bash (workspace .env)": {
+      "path": "bash",
+      "args": [
+        "-lc",
+        "if [ -f ./.vscode/terminal-bootstrap.sh ]; then source ./.vscode/terminal-bootstrap.sh; fi; exec bash"
+      ]
+    }
+  },
+  "terminal.integrated.defaultProfile.linux": "bash (workspace .env)"
+}
